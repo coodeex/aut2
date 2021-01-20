@@ -3,10 +3,10 @@ asenna git
 
 kloonaa tää repo omalle koneelle
 ```
-git clone https://github.com/coodeex/Automation-Systems.git
+git clone https://github.com/coodeex/aut2.git
 ```
 ```
-cd Automation-Systems
+cd aut2
 ```
 tee oma branch ja pysy aina siellä esim:
 ```
@@ -51,7 +51,7 @@ git checkout juha
 ```
 git pull origin main
 ```
-(3. jos tulee ongelma niin se johtuu mitä todennäiköisimmin siitä, että sinun omaa branchia ja main branchia on kehitetty eteenpäin. Tällöin pitää ensin pushata oma koodi ja sitten GitHubissa yhdistää branchit)
+(3. jos tulee ongelma niin se johtuu mitä todennäiköisimmin siitä, että sinun omaa branchia ja main branchia on kehitetty eteenpäin. Tällöin pitää ensin pushata oma koodi ja sitten GitHubissa yhdistää branchit, jonka jälkeen ```git pull origin main``` toiminee)
 
 ### yleistä huomioo vielä
 -ollaan omalla koneella omassa branchissa sen takia että ei vahingossa pilata hyvää main branchia<br>
