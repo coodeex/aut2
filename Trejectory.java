@@ -12,6 +12,7 @@ import java.util.ArrayList;
  *
  * @author matia
  */
+// sdsahdasdh
 public class Trejectory {
 
     ArrayList<Vector3f> points;
@@ -43,6 +44,5 @@ public class Trejectory {
         }else {
             return null;}
         
-    }//tänne kirjotin nyt näin
-    //tähän yks rivi lisää näin
+    }
 }
