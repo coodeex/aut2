@@ -40,8 +40,9 @@ public class Trejectory {
     public Vector3f nextPoint() {
         if (points.get(index) == null) {
             return points.get(index);
-        }
-        return null;
+        }else {
+            return null;}
+        
     }//tänne kirjotin nyt näin
     //tähän yks rivi lisää näin
 }
