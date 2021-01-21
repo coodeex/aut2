@@ -8,6 +8,7 @@ package mygame;
 import com.jme3.asset.AssetManager;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Box;
@@ -42,11 +43,15 @@ public class AssemblyStation {
     public void initTestMove(Vector3f destination) {
         trajectory = new Trejectory();
         // eka välietappi suoraan ylös max korkeuteen
-        Vector3f v1 = assemblyArm.getToolTipLocation();
+        Vector3f v1 = Arm.getToolTipLocation();
         v1.setY(maxHeight);
         trajectory.addPoint(v1);
         // toka välietappi max korkeuteen destination ylle
-        //? ? ?
+        
+        v1.setZ(destination.getZ());
+        v1.setX(destination.getX());
+        trajectory.addPoint(v1);
+        
         trajectory.addPoint(destination);
         trajectory.initTrajectory();
     }
