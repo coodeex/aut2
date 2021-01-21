@@ -68,4 +68,77 @@ public class RobotArm {
         geomTooltip.setMaterial(mat);
         tooltipNode.setLocalTranslation(-7f, -0.4f, 0f);
     }
+    // target on välietappi johon kuuluu ajaa
+    public void initMove(Vector3f target) {
+        targetLocation = target;
+    }
+    // palauttaa tooltipin alapinnan keskipisteen koordinaatit maailma-koordinaateissa
+    // käytä Geometry luokan getWorldTranslation()
+
+    public Vector3f getToolTipLocation() {
+        //?  ?  ?
+    }
+    // moves towards target location and returns false when it reached the location
+
+    public boolean move() {
+        Vector3f location = getToolTipLocation();
+        // lasketaan etäisyys määränpäähän maailma-koordinaateissa
+        float xDistance = targetLocation.getX() - location.getX();
+        float zDistance =  targetLocation.getZ() - location.getZ();
+        float  yDistance =  targetLocation.getY() - location.getY(); 
+       
+        // booleanit ilmaisee että onko kyseisen akselin suuntainen liike valmis        
+        boolean  xReady = false;
+        boolean yReady = false;
+        boolean zReady = false;
+        
+        float x; // x-akselin suuntainen liike tämän syklin aikana
+        float y; // y-akselin suuntainen liike tämän syklin aikana
+        float z; // z-akselin suuntainen liike tämän syklin aikana
+        
+        // siirrytään stepin verran oikeaan suuntaan jos matkaa on yli stepin verran
+        // muuten siirrytään targetLocationin x koordinaattiit
+        if (xDistance > step) {
+            x = step;
+        } else if ((-1 * xDistance) > step) {
+            x = -1 * step;
+        } else {
+            xReady = true;
+            x = xDistance;
+        }
+        
+        if (zDistance > step) {
+            //?  ?  ?
+        }
+
+        if (yDistance > step) {
+            //?  ?  ?
+        }
+        
+        // siirretään mastossa kiinni oleva zArm, joka liikkuu siis z-suuntaan
+        // 0.5f siitä syystä että robotti ulottuu paremmin (xArm liikuu zArmia pitkin)
+        Vector3f v = new Vector3f(0, 0, 0.5f * z);
+        geoz.setLocalTranslation(geoz.getLocalTranslation().add(v));
+        
+        // xArm on zArmin varassa minkä lisäksi se liikkuu sitä pitkin, joten nyt
+        // käytetä 0.5f kerrointa kuten äsken
+        Vector3f v1 = new Vector3f(0, 0, z);
+        geox.setLocalTranslation(geox.getLocalTranslation().add(v1));
+        
+        // yArm liikkuu xArm Pitkin x suuntaan ja tekee myös y-suuntaisen liikkeen,
+        // minkä lisäksi zArmin liike siirtää myös yArmia
+        Vector3f v2 = new Vector3f(x, y, z);
+        geoy.setLocalTranslation(geoy.getLocalTranslation().add(v2));
+        
+        // nodetoolTip paikaksi on määritelty yArm alapinta, mutta nodetoolTipin parent
+        // noodi ei liiku, joten nodetoolTip pitää siirtää kuten yArm
+        // samalla liikkuu nodetoolTippiin liitetty tooltipin geometria
+        tooltipNode.setLocalTranslation(tooltipNode.getLocalTranslation().add(? ? ?));
+        
+        if ((yReady && xReady) && zReady) {
+            return false; //i.e. not moving anymore
+        } else {
+            return true;
+        }
+    }
 }
