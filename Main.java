@@ -7,7 +7,6 @@ import com.jme3.renderer.RenderManager;
 import com.jme3.light.PointLight;
 import com.jme3.math.Vector3f;
 
-
 /**
  * This is the Main Class of your Game. You should only do initialization here.
  * Move your Logic into AppStates or Controls
@@ -19,20 +18,21 @@ public class Main extends SimpleApplication {
     public static void main(String[] args) {
         Main app = new Main();
         app.start();
-        
+
     }
     public static float floorHeight = -15;
+
     @Override
     public void simpleInitApp() {
         flyCam.setMoveSpeed(10);
-        
-        AssemblyStation Station = new AssemblyStation(assetManager,rootNode,5,-11);
-        rootNode.attachChild(Station.node);
-        
-        RobotArm Arm = new RobotArm(assetManager,rootNode);
+
+        RobotArm Arm = new RobotArm(assetManager, rootNode);
         rootNode.attachChild(Arm.tooltipNode);
         rootNode.attachChild(Arm.node);
-       /* Lego lego = new Lego(assetManager, "red");
+
+        AssemblyStation Station = new AssemblyStation(assetManager, rootNode, 5, -11, Arm);
+        rootNode.attachChild(Station.node);
+        /* Lego lego = new Lego(assetManager, "red");
         rootNode.attachChild(lego.node);
 
         Lego lego1 = new Lego(assetManager, "yellow");

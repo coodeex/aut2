@@ -28,6 +28,7 @@ public class Trejectory {
 
     // lisää pisteen listan hännille
     public void addPoint(Vector3f v) {
+        index = index+1;
         points.add(v);
     }
 
@@ -40,7 +41,8 @@ public class Trejectory {
     // palauttaa indexin kohdalla olevan pisteen tai null jos ei enää pisteitä
     public Vector3f nextPoint() {
         if (points.get(index) == null) {
-            return points.get(index);
+            index=index+1;
+            return points.get(index-1);
         }else {
             return null;}
         

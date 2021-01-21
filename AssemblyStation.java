@@ -26,8 +26,10 @@ public class AssemblyStation {
     float maxHeight = 4; // max korkeus reitin välietapeille
     boolean moving = false; // true jos matkalla seuraavaan välietappiin
     Trejectory trajectory;
+    RobotArm assemblyArm;
 
-    public AssemblyStation(AssetManager assetManager, Node rootNode, float xOffset, float zOffset) {
+    public AssemblyStation(AssetManager assetManager, Node rootNode, float xOffset, float zOffset, RobotArm Arm) {
+        assemblyArm = Arm;
         float yExtent = 6;   
         box = new Box(20, yExtent, 10);
         geom = new Geometry("Box", box);
@@ -43,7 +45,7 @@ public class AssemblyStation {
     public void initTestMove(Vector3f destination) {
         trajectory = new Trejectory();
         // eka välietappi suoraan ylös max korkeuteen
-        Vector3f v1 = Arm.getToolTipLocation();
+        Vector3f v1 = assemblyArm.getToolTipLocation();
         v1.setY(maxHeight);
         trajectory.addPoint(v1);
         // toka välietappi max korkeuteen destination ylle
@@ -68,13 +70,14 @@ public class AssemblyStation {
             // tänne tullaan jos edellinen välietappi saavutettiin
             Vector3f nextPoint = trajectory.nextPoint();
             if (nextPoint == null) {
-                //?  ?  ?
+                return false;
             } else {
                 // debug printit tulee konsoliin näkyviin kun suljet ohjelman
                 System.out.println(nextPoint.toString());
                 // annetaan robotille seuraava välietappi ja alustetaan moving seuraavaa
                 // move() kutsua silmälläpitäen
-                //?  ?  ?
+                //???
+                return true;
             }
         }
     }
