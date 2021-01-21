@@ -8,6 +8,7 @@ package mygame;
 import com.jme3.asset.AssetManager;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Box;
@@ -79,7 +80,7 @@ public class RobotArm {
     // käytä Geometry luokan getWorldTranslation()
 
     public Vector3f getToolTipLocation() {
-        //?  ?  ?
+        return geomTooltip.getWorldTranslation();
     }
     // moves towards target location and returns false when it reached the location
 
@@ -146,7 +147,7 @@ public class RobotArm {
         // nodetoolTip paikaksi on määritelty yArm alapinta, mutta nodetoolTipin parent
         // noodi ei liiku, joten nodetoolTip pitää siirtää kuten yArm
         // samalla liikkuu nodetoolTippiin liitetty tooltipin geometria
-        tooltipNode.setLocalTranslation(tooltipNode.getLocalTranslation().add(? ? ?));
+        tooltipNode.setLocalTranslation(tooltipNode.getLocalTranslation().add(v2));
         
         if ((yReady && xReady) && zReady) {
             return false; //i.e. not moving anymore
