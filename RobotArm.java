@@ -31,6 +31,9 @@ public class RobotArm {
     Geometry geoy;
     Geometry geoz;
     
+    private Vector3f targetLocation; // välietappi
+    float step = 0.1f; // etäisyys akselia kohden mikä liikutaan yhden syklin aikana
+    
     public RobotArm(AssetManager assetManager,Node rootNode) {
         
         Material mat = new Material(assetManager,"Common/MatDefs/Light/Lighting.j3md");
@@ -108,11 +111,21 @@ public class RobotArm {
         }
         
         if (zDistance > step) {
-            //?  ?  ?
+            z = step;
+        } else if ((-1 * zDistance) > step) {
+            z = -1 * step;
+        } else {
+            zReady = true;
+            z = zDistance;
         }
 
         if (yDistance > step) {
-            //?  ?  ?
+            y = step;
+        } else if ((-1 * yDistance) > step) {
+            y = -1 * step;
+        } else {
+            yReady = true;
+            y = yDistance;
         }
         
         // siirretään mastossa kiinni oleva zArm, joka liikkuu siis z-suuntaan
