@@ -22,7 +22,9 @@ public class AssemblyStation {
     Geometry geom;
     Box box;
     
-    
+    float maxHeight = 4; // max korkeus reitin välietapeille
+    boolean moving = false; // true jos matkalla seuraavaan välietappiin
+    Trejectory trajectory;
 
     public AssemblyStation(AssetManager assetManager, Node rootNode, float xOffset, float zOffset) {
         float yExtent = 6;   
@@ -36,5 +38,39 @@ public class AssemblyStation {
         geom.setMaterial(mat);
         geom.setLocalTranslation(xOffset, Main.floorHeight + yExtent, zOffset);
     }
+    // tehdään APP eli reitinsuunnittelu destination koordinaatteihin
+    public void initTestMove(Vector3f destination) {
+        trajectory = new Trejectory();
+        // eka välietappi suoraan ylös max korkeuteen
+        Vector3f v1 = assemblyArm.getToolTipLocation();
+        v1.setY(maxHeight);
+        trajectory.addPoint(v1);
+        // toka välietappi max korkeuteen destination ylle
+        //? ? ?
+        trajectory.addPoint(destination);
+        trajectory.initTrajectory();
+    }
+    // käskyttää robottia ajamaan reitin, joka on määritelty trajectory-attribuuttiin
+    // palauttaa false jos saavutettiin trajectory viimeinen (väli)etappi, eli
+    // initTestMove() saama destination. Muuten palauttaa true.
+    // tätä tulee kutsua syklisesti kunnes se palauttaa false
 
+    public boolean move() {
+        if (moving) {
+            moving = assemblyArm.move();
+            return true;
+        } else {
+            // tänne tullaan jos edellinen välietappi saavutettiin
+            Vector3f nextPoint = trajectory.nextPoint();
+            if (nextPoint == null) {
+                //?  ?  ?
+            } else {
+                // debug printit tulee konsoliin näkyviin kun suljet ohjelman
+                System.out.println(nextPoint.toString());
+                // annetaan robotille seuraava välietappi ja alustetaan moving seuraavaa
+                // move() kutsua silmälläpitäen
+                //?  ?  ?
+            }
+        }
+    }
 }
