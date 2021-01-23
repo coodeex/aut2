@@ -50,9 +50,10 @@ public class AssemblyStation {
         trajectory.addPoint(v1);
         // toka välietappi max korkeuteen destination ylle
         
-        v1.setZ(destination.getZ());
-        v1.setX(destination.getX());
-        trajectory.addPoint(v1);
+        Vector3f v2 = destination;
+        v2.setY(maxHeight);
+        
+        trajectory.addPoint(v2);
         
         trajectory.addPoint(destination);
         trajectory.initTrajectory();
@@ -68,7 +69,9 @@ public class AssemblyStation {
             return true;
         } else {
             // tänne tullaan jos edellinen välietappi saavutettiin
+            System.out.println("tähän asti päästään");
             Vector3f nextPoint = trajectory.nextPoint();
+            System.out.println("tänne ei päästä");
             if (nextPoint == null) {
                 return false;
             } else {
@@ -76,7 +79,8 @@ public class AssemblyStation {
                 System.out.println(nextPoint.toString());
                 // annetaan robotille seuraava välietappi ja alustetaan moving seuraavaa
                 // move() kutsua silmälläpitäen
-                //???
+                
+                assemblyArm.initMove(nextPoint);
                 return true;
             }
         }
