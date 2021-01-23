@@ -69,6 +69,8 @@ public class RobotArm {
         tooltip = new Box(0.14f, 0.4f, 0.14f);
         geomTooltip = new Geometry("Box", tooltip);
         tooltipNode.attachChild(geomTooltip);
+        //olisko tää oikeempi tapa?
+        //node.attachChild(tooltipNode);
         geomTooltip.setMaterial(mat);
         tooltipNode.setLocalTranslation(-7f, -0.4f, 0f);
     }
