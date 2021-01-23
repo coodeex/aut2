@@ -21,16 +21,20 @@ public class Main extends SimpleApplication {
 
     }
     public static float floorHeight = -15;
+    public AssemblyStation Station;
 
     @Override
     public void simpleInitApp() {
+        
+        
         flyCam.setMoveSpeed(10);
 
         RobotArm Arm = new RobotArm(assetManager, rootNode);
-        rootNode.attachChild(Arm.tooltipNode);
-        rootNode.attachChild(Arm.node);
 
-        AssemblyStation Station = new AssemblyStation(assetManager, rootNode, 5, -11, Arm);
+        rootNode.attachChild(Arm.node);
+        Arm.node.attachChild(Arm.tooltipNode);
+
+        Station = new AssemblyStation(assetManager, rootNode, 5, -11, Arm);
         rootNode.attachChild(Station.node);
         /* Lego lego = new Lego(assetManager, "red");
         rootNode.attachChild(lego.node);
@@ -55,12 +59,12 @@ public class Main extends SimpleApplication {
         lamp_light.setColor(ColorRGBA.White);
         lamp_light.setRadius(400f);
         lamp_light.setPosition(new Vector3f(2f, 8.0f, 10.0f));
-        rootNode.addLight(lamp_light);
+        //Station.initTestMove(new Vector3f(0, 0, -5));
     }
 
     @Override
     public void simpleUpdate(float tpf) {
-        //TODO: add update code
+       Station.move();
     }
 
     @Override
