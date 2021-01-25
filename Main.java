@@ -59,7 +59,7 @@ public class Main extends SimpleApplication {
         lamp_light.setColor(ColorRGBA.White);
         lamp_light.setRadius(400f);
         lamp_light.setPosition(new Vector3f(2f, 8.0f, 10.0f));
-        //Station.initTestMove(new Vector3f(0, 0, -5));
+        Station.initTestMove(new Vector3f(0, 0, -5));
     }
 
     @Override
