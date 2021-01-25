@@ -21,15 +21,18 @@ public class Trejectory {
     int size = 0;// kuinka monta waypointtia ‘points’listassa on
 
     // alustaa yllämainitut points ja index muuttujat
-    public void Trajectory() {
+    public void Trejectory() {
         index = 0;
         points = new ArrayList<Vector3f>();
     }
 
     // lisää pisteen listan hännille
     public void addPoint(Vector3f v) {
-        //size++;
+        
+        //System.out.println(points);
+        //System.out.println(v);
         points.add(v);
+         //System.out.println("jälkeen"+points);
     }
 
     // nollaa indeksin ja asettaa size muuttujalle oikean arvon
@@ -40,8 +43,10 @@ public class Trejectory {
 
     // palauttaa indexin kohdalla olevan pisteen tai null jos ei enää pisteitä
     public Vector3f nextPoint() {
-        if (points.get(index) != null) {
+        
+        if (index<size) {
             index++;
+            System.out.println("eka piste :"+points.get(index-1));
             return points.get(index - 1);
         } else {
             return null;

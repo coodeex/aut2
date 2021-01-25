@@ -44,6 +44,7 @@ public class AssemblyStation {
     // tehdään APP eli reitinsuunnittelu destination koordinaatteihin
     public void initTestMove(Vector3f destination) {
         trajectory = new Trejectory();
+        trajectory.Trejectory();
         // eka välietappi suoraan ylös max korkeuteen
         Vector3f v1 = assemblyArm.getToolTipLocation();
         v1.setY(maxHeight);
@@ -69,14 +70,15 @@ public class AssemblyStation {
             return true;
         } else {
             // tänne tullaan jos edellinen välietappi saavutettiin
-            System.out.println("tähän asti päästään");
+            //System.out.println("tähän asti päästään");
+           
             Vector3f nextPoint = trajectory.nextPoint();
-            System.out.println("tänne ei päästä");
+            //System.out.println("tänne ei päästä");
             if (nextPoint == null) {
                 return false;
             } else {
                 // debug printit tulee konsoliin näkyviin kun suljet ohjelman
-                System.out.println(nextPoint.toString());
+                //System.out.println(nextPoint);
                 // annetaan robotille seuraava välietappi ja alustetaan moving seuraavaa
                 // move() kutsua silmälläpitäen
                 
