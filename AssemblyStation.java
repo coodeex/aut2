@@ -83,6 +83,7 @@ public class AssemblyStation {
                 // move() kutsua silmälläpitäen
                 
                 assemblyArm.initMove(nextPoint);
+                assemblyArm.move();
                 return true;
             }
         }

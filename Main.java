@@ -32,11 +32,11 @@ public class Main extends SimpleApplication {
         RobotArm Arm = new RobotArm(assetManager, rootNode);
 
         rootNode.attachChild(Arm.node);
-        Arm.node.attachChild(Arm.tooltipNode);
+        rootNode.attachChild(Arm.tooltipNode);
 
         Station = new AssemblyStation(assetManager, rootNode, 5, -11, Arm);
         rootNode.attachChild(Station.node);
-        /* Lego lego = new Lego(assetManager, "red");
+         /*Lego lego = new Lego(assetManager, "red");
         rootNode.attachChild(lego.node);
 
         Lego lego1 = new Lego(assetManager, "yellow");
@@ -59,7 +59,8 @@ public class Main extends SimpleApplication {
         lamp_light.setColor(ColorRGBA.White);
         lamp_light.setRadius(400f);
         lamp_light.setPosition(new Vector3f(2f, 8.0f, 10.0f));
-        Station.initTestMove(new Vector3f(0, 0, -5));
+        rootNode.addLight(lamp_light);
+        Station.initTestMove(new Vector3f(5, 5, -1));
     }
 
     @Override

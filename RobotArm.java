@@ -92,7 +92,7 @@ public class RobotArm {
         float xDistance = targetLocation.getX() - location.getX();
         float zDistance =  targetLocation.getZ() - location.getZ();
         float  yDistance =  targetLocation.getY() - location.getY(); 
-       
+        
         // booleanit ilmaisee että onko kyseisen akselin suuntainen liike valmis        
         boolean  xReady = false;
         boolean yReady = false;
