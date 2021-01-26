@@ -38,8 +38,10 @@ public class Main extends SimpleApplication {
         rootNode.attachChild(Station.node);
          Lego lego = new Lego(assetManager, "red");
         rootNode.attachChild(lego.node);
+        
+        LegoBuffer pufferi= new LegoBuffer(assetManager, rootNode, 5, -29, 10, 6);
 
-        Lego lego1 = new Lego(assetManager, "yellow");
+        /*Lego lego1 = new Lego(assetManager, "yellow");
         rootNode.attachChild(lego1.node);
         lego1.node.setLocalTranslation(2f, 0, 0);
 
@@ -53,7 +55,7 @@ public class Main extends SimpleApplication {
 
         Lego lego4 = new Lego(assetManager, "blue");
         rootNode.attachChild(lego4.node);
-        lego4.node.setLocalTranslation(8f, 0, 0);
+        lego4.node.setLocalTranslation(8f, 0, 0);*/
 
         PointLight lamp_light = new PointLight();
         lamp_light.setColor(ColorRGBA.White);
