@@ -21,7 +21,7 @@ public class Trejectory {
     int size = 0;// kuinka monta waypointtia ‘points’listassa on
 
     // alustaa yllämainitut points ja index muuttujat
-    public void Trejectory() {
+    public Trejectory() {
         index = 0;
         points = new ArrayList<Vector3f>();
     }

@@ -24,7 +24,7 @@ public class AssemblyStation {
     Box box;
     
     float maxHeight = 4; // max korkeus reitin välietapeille
-    boolean moving = true; // true jos matkalla seuraavaan välietappiin
+    boolean moving = false; // true jos matkalla seuraavaan välietappiin
     Trejectory trajectory;
     RobotArm assemblyArm;
 
@@ -44,7 +44,7 @@ public class AssemblyStation {
     // tehdään APP eli reitinsuunnittelu destination koordinaatteihin
     public void initTestMove(Vector3f destination) {
         trajectory = new Trejectory();
-        trajectory.Trejectory();
+        
         // eka välietappi suoraan ylös max korkeuteen
         Vector3f v1 = assemblyArm.getToolTipLocation();
         v1.setY(maxHeight);
@@ -52,10 +52,10 @@ public class AssemblyStation {
         // toka välietappi max korkeuteen destination ylle
         
         Vector3f v2 = new Vector3f();
-        
         v2.setY(maxHeight);
         v2.setX(destination.getX());
         v2.setZ(destination.getZ());
+        
         trajectory.addPoint(v2);
         
         trajectory.addPoint(destination);
@@ -85,7 +85,7 @@ public class AssemblyStation {
                 // move() kutsua silmälläpitäen
                 
                 assemblyArm.initMove(nextPoint);
-                
+                moving=true;
                 return true;
             }
         }
