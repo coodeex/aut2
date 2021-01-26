@@ -110,7 +110,7 @@ public class LegoBuffer {
     // rowIndex=0 columnIndex=1 jne
 
     private float zCoord(int index) {
-        int columnIndex = index % columnSize;
+        int columnIndex = index / rowSize;
         return (columnIndex - columnSize / 2) * legoSpacingZ;
     }
     // palauttaa legos listan “index” kohdan legon (keskipisteen) koordinaatit
