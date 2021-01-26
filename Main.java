@@ -21,7 +21,7 @@ public class Main extends SimpleApplication {
 
     }
     public static float floorHeight = -15;
-    public AssemblyStation Station;
+   public AssemblyStation Station; 
 
     @Override
     public void simpleInitApp() {
@@ -36,11 +36,10 @@ public class Main extends SimpleApplication {
 
         Station = new AssemblyStation(assetManager, rootNode, 5, -11, Arm);
         rootNode.attachChild(Station.node);
-         Lego lego = new Lego(assetManager, "red");
-        rootNode.attachChild(lego.node);
+       
         
         LegoBuffer pufferi= new LegoBuffer(assetManager, rootNode, 5, -29, 10, 6);
-
+        
         /*Lego lego1 = new Lego(assetManager, "yellow");
         rootNode.attachChild(lego1.node);
         lego1.node.setLocalTranslation(2f, 0, 0);

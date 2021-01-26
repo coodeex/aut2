@@ -39,7 +39,7 @@ public class AssemblyStation {
         mat.setBoolean("UseMaterialColors", true);
         mat.setColor("Diffuse", ColorRGBA.LightGray);
         geom.setMaterial(mat);
-        geom.setLocalTranslation(xOffset, Main.floorHeight + yExtent, zOffset);
+        geom.setLocalTranslation(xOffset, Main.floorHeight + yExtent , zOffset);
     }
     // tehdään APP eli reitinsuunnittelu destination koordinaatteihin
     public void initTestMove(Vector3f destination) {

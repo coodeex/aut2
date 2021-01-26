@@ -48,16 +48,21 @@ public class LegoBuffer {
         // luo ColorRGBA.LightGray värinen box jonka koko on (16f, yExtent, 8f)
         // luo sille geometria ja liitä se rootNodeen???
         box = new Box(16f, yExtent, 8f);
+        geom = new Geometry("Box", box);
+
         Material mat = new Material(assetManager,"Common/MatDefs/Light/Lighting.j3md");
         mat.setBoolean("UseMaterialColors", true);
         mat.setColor("Diffuse", ColorRGBA.LightGray);
-        geom.setMaterial(mat);
         rootNode.attachChild(geom);
         
+        geom.setMaterial(mat);
+        
+        
         // tason pinnan y koordinaatti lasketaan Main.floorHeight + yExtentavulla
-        surfaceHeight = Main.floorHeight + yExtent;
+        surfaceHeight = Main.floorHeight + 2*yExtent;
         // laitetaan varastotaso siten että pohja on tuotantosolun lattian korkeudella
-        geom.setLocalTranslation(x, surfaceHeight, z);
+        System.out.println("työtaso"+surfaceHeight);
+        geom.setLocalTranslation(x,Main.floorHeight+yExtent , z);
         String colorLego = "red";
         // punainenlego tulee vain jos koodissasi on bugi
         // laitetaan tasolle rowSize*columnSize legoa. Vuorotellen eri värisiä. Muista
@@ -88,6 +93,7 @@ public class LegoBuffer {
             }
         }
         for (int i = 0; i < (rowSize * columnSize); i++) {
+             System.out.println("legon paikka :"+getLegoCenterLocation(i));
             legos.get(i).node.setLocalTranslation(getLegoCenterLocation(i));
         }
     }
@@ -113,6 +119,7 @@ public class LegoBuffer {
     // käytä xCoord() ja yCoord() metodeja
 
     private Vector3f getLegoCenterLocation(int index) {
+       
         return new Vector3f(x + xCoord(index), surfaceHeight + 0.2f, z + zCoord(index));
     }
 
