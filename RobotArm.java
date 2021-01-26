@@ -33,7 +33,7 @@ public class RobotArm {
     Geometry geoz;
     
     private Vector3f targetLocation; // välietappi
-    float step = 0.1f; // etäisyys akselia kohden mikä liikutaan yhden syklin aikana
+    float step = 1f; // etäisyys akselia kohden mikä liikutaan yhden syklin aikana
     
     public RobotArm(AssetManager assetManager,Node rootNode) {
         
