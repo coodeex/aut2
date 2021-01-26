@@ -94,8 +94,10 @@ public class AssemblyStation {
                 return true;
             }
         }
+    }
         // kokoonpanoasemalla on slotteja, joiden indeksi on kokonaisluku
         // tämä palauttaa slotin 3D koordinaatit
+        
     public Vector3f slotPosition(int slot) {
         // vain osa asemasta on varattu tähän tarkoitukseen. Sen koko on 16x12
         int rowSize = (int) ((16) / legoSpacingX);
