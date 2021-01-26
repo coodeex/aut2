@@ -36,7 +36,7 @@ public class Main extends SimpleApplication {
 
         Station = new AssemblyStation(assetManager, rootNode, 5, -11, Arm);
         rootNode.attachChild(Station.node);
-         /*Lego lego = new Lego(assetManager, "red");
+         Lego lego = new Lego(assetManager, "red");
         rootNode.attachChild(lego.node);
 
         Lego lego1 = new Lego(assetManager, "yellow");
@@ -53,14 +53,14 @@ public class Main extends SimpleApplication {
 
         Lego lego4 = new Lego(assetManager, "blue");
         rootNode.attachChild(lego4.node);
-        lego4.node.setLocalTranslation(8f, 0, 0);*/
+        lego4.node.setLocalTranslation(8f, 0, 0);
 
         PointLight lamp_light = new PointLight();
         lamp_light.setColor(ColorRGBA.White);
         lamp_light.setRadius(400f);
         lamp_light.setPosition(new Vector3f(2f, 8.0f, 10.0f));
         rootNode.addLight(lamp_light);
-        Station.initTestMove(new Vector3f(5, 5, -1));
+        Station.initTestMove(new Vector3f(0, 0, -8));
     }
 
     @Override
