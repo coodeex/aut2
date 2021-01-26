@@ -76,7 +76,9 @@ public class RobotArm {
     }
     // target on välietappi johon kuuluu ajaa
     public void initMove(Vector3f target) {
+       
         targetLocation = target;
+       
     }
     // palauttaa tooltipin alapinnan keskipisteen koordinaatit maailma-koordinaateissa
     // käytä Geometry luokan getWorldTranslation()
@@ -88,6 +90,7 @@ public class RobotArm {
 
     public boolean move() {
         Vector3f location = getToolTipLocation();
+        
         // lasketaan etäisyys määränpäähän maailma-koordinaateissa
         float xDistance = targetLocation.getX() - location.getX();
         float zDistance =  targetLocation.getZ() - location.getZ();
