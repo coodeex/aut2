@@ -32,7 +32,7 @@ public class Main extends SimpleApplication {
         RobotArm Arm = new RobotArm(assetManager, rootNode);
 
         rootNode.attachChild(Arm.node);
-        rootNode.attachChild(Arm.tooltipNode);
+        Arm.node.attachChild(Arm.tooltipNode);
 
         Station = new AssemblyStation(assetManager, rootNode, 5, -11, Arm);
         rootNode.attachChild(Station.node);
