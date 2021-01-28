@@ -61,7 +61,7 @@ public class LegoBuffer {
         // tason pinnan y koordinaatti lasketaan Main.floorHeight + yExtentavulla
         surfaceHeight = Main.floorHeight + 2*yExtent;
         // laitetaan varastotaso siten että pohja on tuotantosolun lattian korkeudella
-        System.out.println("työtaso"+surfaceHeight);
+        //System.out.println("työtaso"+surfaceHeight);
         geom.setLocalTranslation(x,Main.floorHeight+yExtent , z);
         String colorLego = "red";
         // punainenlego tulee vain jos koodissasi on bugi
@@ -93,9 +93,10 @@ public class LegoBuffer {
             }
         }
         for (int i = 0; i < (rowSize * columnSize); i++) {
-             System.out.println("legon paikka :"+getLegoCenterLocation(i));
+             //System.out.println("legon paikka :"+getLegoCenterLocation(i));
             legos.get(i).node.setLocalTranslation(getLegoCenterLocation(i));
         }
+        System.out.println(getLegoCenterLocation(1));
     }
 
     // legon x koordinaatti suhteessa LegoBuffer keskipisteeseen. ”legos” listan eka
