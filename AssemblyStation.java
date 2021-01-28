@@ -70,7 +70,23 @@ public class AssemblyStation {
         assemblyArm.tooltipNode.attachChild(lego.node);
         lego.node.setLocalTranslation(0,-0.6f,0);
         
-        // muuten lego ei lähde mukaan
+        trajectory = new Trejectory();
+        
+        Vector3f v1 = lego.location;
+        v1.setY(maxHeight);
+        trajectory.addPoint(v1);
+        
+        Vector3f v2 = new Vector3f();
+        v2.setY(maxHeight);
+        v2.setX(destination.getX());
+        v2.setZ(destination.getZ());
+        trajectory.addPoint(v2);
+        
+        destination.setY(destination.getY() + 0.4f);
+        trajectory.addPoint(destination);
+        trajectory.initTrajectory();
+        
+// muuten lego ei lähde mukaan
         // nyt legon noden sijainti pitää määritellä nodeToolTip paikallisissa
         // koordinaateissa. lego.node.setLocalTranslation(0,0,0) laittaisi legon// keskipisteen tooltipin keskipisteeseen
         // vinkki: tooltipin yExtent = 0.4f ja legon yExtent = 0.2f???
