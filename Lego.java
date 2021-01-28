@@ -19,9 +19,10 @@ public class Lego {
     Vector3f location;
 
 
-    public Lego(AssetManager assetManager, String color) {
+    public Lego(AssetManager assetManager, String colour) {
         box = new Box(0.8f, 0.2f, 0.4f);
         ColorRGBA c;
+        color =colour;
         geom = new Geometry("Box", box);
         node.attachChild(geom);
 
