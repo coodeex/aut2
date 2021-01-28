@@ -46,7 +46,23 @@ public class AssemblyStation {
         surfaceHeight = Main.floorHeight + 2 * yExtent;
     }
 
-    // tehdään APP eli reitinsuunnittelu destination koordinaatteihin
+    // APP kohteeseen lego.location
+    // sama idea kuin edellisen harjoituksen
+    public void initMoveToLego(Lego lego) {
+        
+    }
+
+    // APP kohteeseen destination
+    public void initMoveToStation(Lego lego, Vector3f destination) {
+        assemblyArm.tooltipNode.attachChild(lego.node);
+        lego.node.setLocalTranslation(0,-0.6f,0);
+        // muuten lego ei lähde mukaan
+        // nyt legon noden sijainti pitää määritellä nodeToolTip paikallisissa
+        // koordinaateissa. lego.node.setLocalTranslation(0,0,0) laittaisi legon// keskipisteen tooltipin keskipisteeseen
+        // vinkki: tooltipin yExtent = 0.4f ja legon yExtent = 0.2f???
+        // sitten tehdään APP kohteeseen ”destination”
+    }
+
     public void initTestMove(Vector3f destination) {
         trajectory = new Trejectory();
 
@@ -95,9 +111,9 @@ public class AssemblyStation {
             }
         }
     }
-        // kokoonpanoasemalla on slotteja, joiden indeksi on kokonaisluku
-        // tämä palauttaa slotin 3D koordinaatit
-        
+
+    // kokoonpanoasemalla on slotteja, joiden indeksi on kokonaisluku
+    // tämä palauttaa slotin 3D koordinaatit
     public Vector3f slotPosition(int slot) {
         // vain osa asemasta on varattu tähän tarkoitukseen. Sen koko on 16x12
         int rowSize = (int) ((16) / legoSpacingX);
@@ -117,7 +133,7 @@ public class AssemblyStation {
         // legonyExtent
         // ’x’ja ’z’onfloat muuttujia, joihin on tallennettu konstruktorin xOffset/zOffset
         // laske ’surfaceHeight’ konstruktorissa
-        return new Vector3f(x + xOffset, surfaceHeight + yOffset,z  + zOffset - 12);
+        //return new Vector3f(x + xOffset, surfaceHeight + yOffset,z  + zOffset - 12);
+        return null;
     }
 }
-

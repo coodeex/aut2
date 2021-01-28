@@ -46,7 +46,7 @@ public class Trejectory {
         
         if (index<size) {
             index++;
-            System.out.println("eka piste :"+points.get(index-1));
+            //System.out.println("eka piste :"+points.get(index-1));
             return points.get(index - 1);
         } else {
             return null;
