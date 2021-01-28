@@ -25,7 +25,7 @@ public class Main extends SimpleApplication {
     public AssemblyStation Station;
 
     boolean freeze = false; // debug tarkoituksiin – laita true siinä kohdassa koodia
-
+    
     // mihin haluat robotin pysähtyvän
     boolean moving = false; // true kun robotti liikkuu
     boolean goingToLego = false; // true kun mennään hakemaan legoa bufferista
@@ -35,6 +35,7 @@ public class Main extends SimpleApplication {
     int colorIndex = 0; // “colors” (kts alla) listan indeksi
     // listan perusteella tiedetään missä järjestyksessä lajitellaan värin mukaan
     ArrayList<String> colors = new ArrayList(numColors);
+    LegoBuffer pufferi;
 
     @Override
     public void simpleInitApp() {
@@ -49,9 +50,9 @@ public class Main extends SimpleApplication {
         Station = new AssemblyStation(assetManager, rootNode, 5, -11, Arm);
         rootNode.attachChild(Station.node);
 
-        LegoBuffer pufferi = new LegoBuffer(assetManager, rootNode, 5, -29, 10, 6);
+        pufferi = new LegoBuffer(assetManager, rootNode, 5, -29, 10, 6);
 
-        System.out.println(pufferi.legos);
+        
 
         /*Lego lego1 = new Lego(assetManager, "yellow");
         rootNode.attachChild(lego1.node);
@@ -111,13 +112,15 @@ public class Main extends SimpleApplication {
                     // irrota legon node tooltipin nodesta
                     // (tämä on pitkä rimpsu jossa käytetään monen olion nimeä
                     //???
+                    
                     lego.node.setLocalTranslation(loc);
                     // legon node ei ole nyt kiinni missään nodessa, joten se ei tule
                     // näkyviin ennen kuin korjaat asian
-                    //?  ?  ?
+                    rootNode.attachChild(lego.node);
                 }
                 // haetaan bufferista seuraava lego, jonka väri on: colors.get(colorIndex)
-                // eli päivitä muuttujan ’lego’ arvo
+                // eli päivitä muuttujan ’lego’ arvo                    rootNode.attachChild(lego.node);
+                lego = pufferi.giveLego(colors.get(colorIndex));
                 //???
                 moving = true;
                 if (lego == null) {
@@ -130,6 +133,7 @@ public class Main extends SimpleApplication {
                         // haetaan bufferista seuraava lego, jonka väri on:
                         // colors.get(colorIndex)
                         //?  ?  ?
+                        lego = pufferi.giveLego(colors.get(colorIndex));
                     }
                 }
                 if (!freeze) {
