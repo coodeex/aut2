@@ -110,7 +110,7 @@ public class Main extends SimpleApplication {
                     Vector3f loc = lego.node.getWorldTranslation();
                     // irrota legon node tooltipin nodesta
                     // (tämä on pitkä rimpsu jossa käytetään monen olion nimeä
-                    //???
+                    Station.assemblyArm.tooltipNode.detachChild(lego.node);
                     lego.node.setLocalTranslation(loc);
                     // legon node ei ole nyt kiinni missään nodessa, joten se ei tule
                     // näkyviin ennen kuin korjaat asian
