@@ -18,6 +18,7 @@ public class Lego {
     String color;
     Vector3f location;
 
+
     public Lego(AssetManager assetManager, String color) {
         box = new Box(0.8f, 0.2f, 0.4f);
         ColorRGBA c;
