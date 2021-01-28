@@ -77,7 +77,9 @@ public class Main extends SimpleApplication {
         //Station.initTestMove(new Vector3f(7, -1, -31)); //HUOM: Poista initTestMove() kutsu.
         colors.add("yellow");
         // lisää muut värit tehtävänannon mukaisessa järjestyksessä
-        //???
+        colors.add("blue");
+        colors.add("pink");
+        colors.add("green");
 
     }
 
@@ -91,12 +93,14 @@ public class Main extends SimpleApplication {
             // moving=false tarkoittaa että saavuttiin reitin päähän, joten on 2 tapausta:
             // otetaan lego mukaan tai jätetään se
             if (goingToLego) { // otetaan lego mukaan
+
                 // nyt ollaan bufferilla sen legon kohdalla mikä otetaan mukaan
                 // v:hen laitetaan kokoonpanoaseman slot numero ”slotIndex” koordinaatit
-                //Vector3f v =  ?  ?  ?
+                Vector3f v = Station.slotPosition(slotIndex); //maybe näin
                 slotIndex++;
+
                 // suoritetaan APP kohteeseen v
-                // ?  ?  ? 
+                Station.initMoveToStation(lego, v); //ehkä tällee, mutta missä alustetaan lego?
                 goingToLego = false;
                 moving = true;
             } else { // jätetään lego tähän

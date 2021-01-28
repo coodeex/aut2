@@ -30,8 +30,12 @@ public class AssemblyStation {
     float legoSpacingX = 2; // legojen slottipaikkojen etäisyys 
     float legoSpacingZ = 2;
     float surfaceHeight;
-
+    float x;
+    float z;
+    
     public AssemblyStation(AssetManager assetManager, Node rootNode, float xOffset, float zOffset, RobotArm Arm) {
+        x=xOffset;
+        z=zOffset;
         assemblyArm = Arm;
         float yExtent = 6;
         box = new Box(20, yExtent, 10);
@@ -163,7 +167,7 @@ public class AssemblyStation {
         // legonyExtent
         // ’x’ja ’z’onfloat muuttujia, joihin on tallennettu konstruktorin xOffset/zOffset
         // laske ’surfaceHeight’ konstruktorissa
-        //return new Vector3f(x + xOffset, surfaceHeight + yOffset,z  + zOffset - 12);
-        return null;
+        return new Vector3f(x + xOffset, surfaceHeight + yOffset,z  + zOffset - 12);
+        //return null;
     }
 }
