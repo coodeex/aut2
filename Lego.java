@@ -4,6 +4,7 @@ import com.jme3.asset.AssetManager;
 import com.jme3.material.Material;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
+import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.Box;
@@ -15,6 +16,7 @@ public class Lego {
     Geometry geom;
     Box box;
     String color;
+    Vector3f location;
 
     public Lego(AssetManager assetManager, String color) {
         box = new Box(0.8f, 0.2f, 0.4f);
