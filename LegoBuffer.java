@@ -35,34 +35,34 @@ public class LegoBuffer {
     // * ”columnSize” legoja
 
     public LegoBuffer(AssetManager assetManager, Node rootNode, float xOffset, float zOffset, int rowSize, int columnSize) {
-        
+
         // tallennetaan parametrien arvot olion yllämääriteltyihin muuttujiin, jotta
         // ne olisivat käytössä sen jälkeen kun tämä konstruktori metodi on suoritettu
-        
         this.rowSize = rowSize;
         this.columnSize = columnSize;
         x = xOffset;
         z = zOffset;    // buffer on box jonka yExtent on:
         float yExtent = 7;
-        
+
         // luo ColorRGBA.LightGray värinen box jonka koko on (16f, yExtent, 8f)
         // luo sille geometria ja liitä se rootNodeen???
         box = new Box(16f, yExtent, 8f);
         geom = new Geometry("Box", box);
 
-        Material mat = new Material(assetManager,"Common/MatDefs/Light/Lighting.j3md");
+        Material mat = new Material(assetManager, "Common/MatDefs/Light/Lighting.j3md");
         mat.setBoolean("UseMaterialColors", true);
         mat.setColor("Diffuse", ColorRGBA.LightGray);
         rootNode.attachChild(geom);
-        
+
         geom.setMaterial(mat);
-        
-        
+
         // tason pinnan y koordinaatti lasketaan Main.floorHeight + yExtentavulla
-        surfaceHeight = Main.floorHeight + 2*yExtent;
+        surfaceHeight = Main.floorHeight + 2 * yExtent;
         // laitetaan varastotaso siten että pohja on tuotantosolun lattian korkeudella
+
         //System.out.println("työtaso"+surfaceHeight);
         geom.setLocalTranslation(x,Main.floorHeight+yExtent , z);
+
         String colorLego = "red";
         // punainenlego tulee vain jos koodissasi on bugi
         // laitetaan tasolle rowSize*columnSize legoa. Vuorotellen eri värisiä. Muista
@@ -71,29 +71,27 @@ public class LegoBuffer {
         for (int i = 0; i < (rowSize * columnSize / 4); i++) {
             for (int j = 0; j < 4; j++) {
                 // asetetaan colorLego arvo, vuorotellen eri väri
-                if(j==0){
-                colorLego= "yellow";
-                }   
-                else if(j==1){
-                colorLego= "blue";
+                if (j == 0) {
+                    colorLego = "yellow";
+                } else if (j == 1) {
+                    colorLego = "blue";
+                } else if (j == 2) {
+                    colorLego = "pink";
+                } else if (j == 3) {
+                    colorLego = "green";
                 }
-                else if(j==2){
-                colorLego= "pink";
-                }
-                else if(j==3){
-                colorLego= "green";
-                }
-                Lego lego = new Lego(assetManager,colorLego );
+                Lego lego = new Lego(assetManager, colorLego);
                 rootNode.attachChild(lego.node);
-               
 
                 // luodaan lego, lisätään se legos ArrayListiin,liitetään rootNodeen
                 legos.add(lego);
-                
+
             }
         }
         for (int i = 0; i < (rowSize * columnSize); i++) {
-             //System.out.println("legon paikka :"+getLegoCenterLocation(i));
+
+            //System.out.println("legon paikka :"+getLegoCenterLocation(i));
+
             legos.get(i).node.setLocalTranslation(getLegoCenterLocation(i));
         }
         System.out.println(getLegoCenterLocation(1));
@@ -120,12 +118,39 @@ public class LegoBuffer {
     // käytä xCoord() ja yCoord() metodeja
 
     private Vector3f getLegoCenterLocation(int index) {
-       
+
         return new Vector3f(x + xCoord(index), surfaceHeight + 0.2f, z + zCoord(index));
     }
 
     public float getSurfaceHeight() {
         return surfaceHeight;
+    }
+    
+    //TEHTÄVÄNANTO
+
+    // APP tarvitsee legonyläpinnan koordinaatin, johon robotti tuo työkalunsa alapinnassa
+    // olevan ’tooltip’ pisteensä
+    private Vector3f getLegoTopLocation(int index) {
+        return new Vector3f(x + xCoord(index), surfaceHeight + 0.4f, z + zCoord(index));
+    }
+    
+    // palauttaa Lego olion joka on halutun värinen tai null jos tällaista legoa ei ole
+    // päivitä legoColor Lego luokkaan ja konstruktoriin
+    // päivitä location Lego luokkaan
+    public Lego giveLego(String color) {
+        Lego lego = null;
+        // luupataan läpi kaikki bufferin legoslotit
+        for (int i = 0; i < (rowSize * columnSize); i++) {
+            lego =  legos.get(i);
+            if (lego != null) {
+                if (lego.color.equals(color)) {
+                    lego.location = getLegoTopLocation(i); //päivitä location Lego luokkaan
+                    legos.set(i, null);
+                    return lego;
+                }
+            }
+        }
+        return null;
     }
 
 }
