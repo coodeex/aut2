@@ -49,13 +49,27 @@ public class AssemblyStation {
     // APP kohteeseen lego.location
     // sama idea kuin edellisen harjoituksen
     public void initMoveToLego(Lego lego) {
+        trajectory = new Trejectory();
         
+        Vector3f v1 = assemblyArm.getToolTipLocation();
+        v1.setY(maxHeight);
+        trajectory.addPoint(v1);
+        
+        Vector3f v2 = new Vector3f();
+        v2.setY(maxHeight);
+        v2.setX(lego.location.getX());
+        v2.setZ(lego.location.getZ());
+        trajectory.addPoint(v2);
+        
+        trajectory.addPoint(lego.location);
+        trajectory.initTrajectory();
     }
 
     // APP kohteeseen destination
     public void initMoveToStation(Lego lego, Vector3f destination) {
         assemblyArm.tooltipNode.attachChild(lego.node);
         lego.node.setLocalTranslation(0,-0.6f,0);
+        
         // muuten lego ei lähde mukaan
         // nyt legon noden sijainti pitää määritellä nodeToolTip paikallisissa
         // koordinaateissa. lego.node.setLocalTranslation(0,0,0) laittaisi legon// keskipisteen tooltipin keskipisteeseen
@@ -64,7 +78,7 @@ public class AssemblyStation {
     }
 
     public void initTestMove(Vector3f destination) {
-        trajectory = new Trejectory();
+        
 
         // eka välietappi suoraan ylös max korkeuteen
         Vector3f v1 = assemblyArm.getToolTipLocation();

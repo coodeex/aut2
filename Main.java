@@ -63,7 +63,7 @@ public class Main extends SimpleApplication {
         lamp_light.setRadius(400f);
         lamp_light.setPosition(new Vector3f(2f, 8.0f, 10.0f));
         rootNode.addLight(lamp_light);
-        Station.initTestMove(new Vector3f(7, -1, -31));
+        
     }
 
     @Override
