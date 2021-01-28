@@ -143,6 +143,8 @@ public class LegoBuffer {
         for (int i = 0; i < (rowSize * columnSize); i++) {
             lego =  legos.get(i);
             if (lego != null) {
+                //System.out.println("haluttu "+color);
+                //System.out.println("legon "+lego.color);
                 if (lego.color.equals(color)) {
                     lego.location = getLegoTopLocation(i); //päivitä location Lego luokkaan
                     legos.set(i, null);
