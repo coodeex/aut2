@@ -33,7 +33,7 @@ public class AssemblyStation {
     float x;
     float z;
     String currentLegoColor; //for stack mode
-    int currentStack = 0; //for stack mode
+    int currentStack = -1; //for stack mode
     int currentColorIndex = 0;
 
     public AssemblyStation(AssetManager assetManager, Node rootNode, float xOffset, float zOffset, RobotArm Arm) {
@@ -184,7 +184,7 @@ public class AssemblyStation {
 
         //System.out.println("slot"+slot);
         // vain osa asemasta on varattu tähän tarkoitukseen. Sen koko on 16x12
-        int rowSize = (int) ((16) / legoSpacingX);
+        int rowSize = (int) ((8) / legoSpacingX);
 
         int rowIndex = currentStack % rowSize;
 
