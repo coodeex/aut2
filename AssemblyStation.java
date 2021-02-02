@@ -32,10 +32,13 @@ public class AssemblyStation {
     float surfaceHeight;
     float x;
     float z;
-    
+    String currentLegoColor; //for stack mode
+    int currentStack = 0; //for stack mode
+    int currentColorIndex = 0;
+
     public AssemblyStation(AssetManager assetManager, Node rootNode, float xOffset, float zOffset, RobotArm Arm) {
-        x=xOffset;
-        z=zOffset;
+        x = xOffset;
+        z = zOffset;
         assemblyArm = Arm;
         float yExtent = 6;
         box = new Box(20, yExtent, 10);
@@ -54,17 +57,17 @@ public class AssemblyStation {
     // sama idea kuin edellisen harjoituksen
     public void initMoveToLego(Lego lego) {
         trajectory = new Trejectory();
-        
+
         Vector3f v1 = assemblyArm.getToolTipLocation();
         v1.setY(maxHeight);
         trajectory.addPoint(v1);
-        
+
         Vector3f v2 = new Vector3f();
         v2.setY(maxHeight);
         v2.setX(lego.location.getX());
         v2.setZ(lego.location.getZ());
         trajectory.addPoint(v2);
-        
+
         trajectory.addPoint(lego.location);
         trajectory.initTrajectory();
     }
@@ -72,24 +75,24 @@ public class AssemblyStation {
     // APP kohteeseen destination
     public void initMoveToStation(Lego lego, Vector3f destination) {
         assemblyArm.tooltipNode.attachChild(lego.node);
-        lego.node.setLocalTranslation(0,-0.6f,0);
-        
+        lego.node.setLocalTranslation(0, -0.6f, 0);
+
         trajectory = new Trejectory();
-        
+
         Vector3f v1 = lego.location;
         v1.setY(maxHeight);
         trajectory.addPoint(v1);
-        
+
         Vector3f v2 = new Vector3f();
         v2.setY(maxHeight);
         v2.setX(destination.getX());
         v2.setZ(destination.getZ());
         trajectory.addPoint(v2);
-        
+
         destination.setY(destination.getY() + 0.4f);
         trajectory.addPoint(destination);
         trajectory.initTrajectory();
-        
+
 // muuten lego ei lähde mukaan
         // nyt legon noden sijainti pitää määritellä nodeToolTip paikallisissa
         // koordinaateissa. lego.node.setLocalTranslation(0,0,0) laittaisi legon// keskipisteen tooltipin keskipisteeseen
@@ -98,7 +101,6 @@ public class AssemblyStation {
     }
 
     public void initTestMove(Vector3f destination) {
-        
 
         // eka välietappi suoraan ylös max korkeuteen
         Vector3f v1 = assemblyArm.getToolTipLocation();
@@ -167,7 +169,33 @@ public class AssemblyStation {
         // legonyExtent
         // ’x’ja ’z’onfloat muuttujia, joihin on tallennettu konstruktorin xOffset/zOffset
         // laske ’surfaceHeight’ konstruktorissa
-        return new Vector3f(x + xOffset, surfaceHeight + yOffset,z  + zOffset - 12);
+        return new Vector3f(x + xOffset, surfaceHeight + yOffset, z + zOffset - 12);
+        //return null;
+    }
+
+    public Vector3f stackSlotPosition(int slot, String legoColor) {
+        if (!legoColor.equals(currentLegoColor)) {
+            currentStack++;
+            currentLegoColor = legoColor;
+            currentColorIndex = 0;
+        } else {
+            currentColorIndex++;
+        }
+
+        //System.out.println("slot"+slot);
+        // vain osa asemasta on varattu tähän tarkoitukseen. Sen koko on 16x12
+        int rowSize = (int) ((16) / legoSpacingX);
+
+        int rowIndex = currentStack % rowSize;
+
+        float xOffset = (rowIndex - 1) * legoSpacingX;
+
+        float yOffset = 0.4f;
+
+        // legonyExtent
+        // ’x’ja ’z’onfloat muuttujia, joihin on tallennettu konstruktorin xOffset/zOffset
+        // laske ’surfaceHeight’ konstruktorissa
+        return new Vector3f(x + xOffset, surfaceHeight + yOffset + currentColorIndex * 0.4f, z );
         //return null;
     }
 }
