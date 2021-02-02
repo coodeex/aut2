@@ -21,11 +21,14 @@ public class Main extends SimpleApplication {
         app.start();
 
     }
+
+    boolean stackMode = true;
+
     public static float floorHeight = -15;
     public AssemblyStation Station;
 
     boolean freeze = false; // debug tarkoituksiin – laita true siinä kohdassa koodia
-    
+
     // mihin haluat robotin pysähtyvän
     boolean moving = false; // true kun robotti liikkuu
     boolean goingToLego = false; // true kun mennään hakemaan legoa bufferista
@@ -51,8 +54,6 @@ public class Main extends SimpleApplication {
         rootNode.attachChild(Station.node);
 
         pufferi = new LegoBuffer(assetManager, rootNode, 5, -29, 10, 6);
-
-        
 
         /*Lego lego1 = new Lego(assetManager, "yellow");
         rootNode.attachChild(lego1.node);
@@ -97,11 +98,16 @@ public class Main extends SimpleApplication {
 
                 // nyt ollaan bufferilla sen legon kohdalla mikä otetaan mukaan
                 // v:hen laitetaan kokoonpanoaseman slot numero ”slotIndex” koordinaatit
-                Vector3f v = Station.slotPosition(slotIndex); //maybe näin
+                Vector3f v;
+                if (stackMode) {
+                    v = Station.stackSlotPosition(slotIndex, lego.color);
+                } else {
+                    v = Station.slotPosition(slotIndex);
+                }
                 slotIndex++;
 
                 // suoritetaan APP kohteeseen v
-                Station.initMoveToStation(lego, v); //ehkä tällee, mutta missä alustetaan lego?
+                Station.initMoveToStation(lego, v);
                 goingToLego = false;
                 moving = true;
             } else { // jätetään lego tähän
