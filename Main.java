@@ -69,6 +69,7 @@ public class Main extends SimpleApplication {
     int assemblyStation2X;
     int assemblyStation2Z;
     AmlRead AmlRead = new AmlRead();
+    int[] coordinateArray;//xzxzxzxz
     
 
     @Override
@@ -81,13 +82,18 @@ public class Main extends SimpleApplication {
         rootNode.attachChild(Arm.node);
         Arm.node.attachChild(Arm.tooltipNode);
         
-        AmlRead.AmlRead(legoBufferX);
-        System.out.println(legoBufferX + ": legoBufdferrrrxxxxxxxxxxx");
+        coordinateArray= AmlRead.AmlRead();
+        //System.out.println(": coordinateArrayyyyyyyyzzzzzz"+ coordinateArray);
+        for(int c = 0;c<8;c++){
+            System.out.println("coordinateArray["+c+"] "+ coordinateArray[c]);
+        }
+        
+        pufferi = new LegoBuffer(assetManager, rootNode, coordinateArray[0], coordinateArray[1], 10, 6);
 
-        Station = new AssemblyStation(assetManager, rootNode, 5, -11, Arm);
+        Station = new AssemblyStation(assetManager, rootNode, coordinateArray[2], coordinateArray[3], Arm);
         rootNode.attachChild(Station.node);
 
-        pufferi = new LegoBuffer(assetManager, rootNode, 5, -29, 10, 6);
+        
 
         PointLight lamp_light = new PointLight();
         lamp_light.setColor(ColorRGBA.White);
@@ -111,11 +117,11 @@ public class Main extends SimpleApplication {
 
         rootNode.attachChild(Arm2.node);
         Arm2.node.attachChild(Arm2.tooltipNode);
+        
+        pufferi2 = new LegoBuffer(assetManager, rootNode, coordinateArray[4], coordinateArray[5], 10, 6);
 
-        Station2 = new AssemblyStation(assetManager, rootNode, 15, -11, Arm2);
+        Station2 = new AssemblyStation(assetManager, rootNode, coordinateArray[6], coordinateArray[7], Arm2);
         rootNode.attachChild(Station2.node);
-
-        pufferi2 = new LegoBuffer(assetManager, rootNode, 15, -29, 10, 6);
 
         /*PointLight lamp_light2 = new PointLight();
         lamp_light.setColor(ColorRGBA.White);
