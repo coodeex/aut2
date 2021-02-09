@@ -1,0 +1,188 @@
+﻿<CAEXFile SchemaVersion="3.0" FileName="XML_tuotantosolu.aml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.dke.de/CAEX" xsi:schemaLocation="http://www.dke.de/CAEX CAEX_ClassModel_V.3.0.xsd">
+  <SuperiorStandardVersion>AutomationML 2.10</SuperiorStandardVersion>
+  <SourceDocumentInformation OriginName="AutomationML Editor" OriginID="916578CA-FE0D-474E-A4FC-9E1719892369" OriginVersion="5.3.3.0" LastWritingDateTime="2021-02-04T15:36:06.6813985+02:00" OriginProjectID="unspecified" OriginProjectTitle="unspecified" OriginRelease="5.3.3.0" OriginVendor="AutomationML e.V." OriginVendorURL="www.AutomationML.org" />
+  <InstanceHierarchy Name="InstanceHierarchy">
+    <Version>0</Version>
+    <InternalElement Name="Cell1" ID="45cfdb3d-d41a-4936-8724-a5038b5227e7" RefBaseSystemUnitPath="SystemUnitClassLib/Cell">
+      <InternalElement Name="LegoBuffer" ID="df6392ac-9b61-4ed9-8b7d-3ed0e929f99b" RefBaseSystemUnitPath="SystemUnitClassLib/LegoBuffer">
+        <Attribute Name="X" AttributeDataType="xs:float" RefAttributeType="AttributeTypeLib/X">
+          <Value>5</Value>
+        </Attribute>
+        <Attribute Name="Z" AttributeDataType="xs:float" RefAttributeType="AttributeTypeLib/Z">
+          <Value>-29</Value>
+        </Attribute>
+      </InternalElement>
+      <InternalElement Name="AssemblyStation" ID="8cfb3d3d-1956-477a-b25f-3217410b8ff2" RefBaseSystemUnitPath="SystemUnitClassLib/AssemblyStation">
+        <Attribute Name="X" AttributeDataType="xs:float" RefAttributeType="AttributeTypeLib/X">
+          <Value>5</Value>
+        </Attribute>
+        <Attribute Name="Z" AttributeDataType="xs:float" RefAttributeType="AttributeTypeLib/Z">
+          <Value>-11</Value>
+        </Attribute>
+      </InternalElement>
+    </InternalElement>
+    <InternalElement Name="Cell2" ID="b1a16454-7cd6-40a3-9d05-6538eed56550" RefBaseSystemUnitPath="SystemUnitClassLib/Cell">
+      <InternalElement Name="LegoBuffer" ID="e3a90fa3-5a8c-41d8-add1-d6769a59e6a5" RefBaseSystemUnitPath="SystemUnitClassLib/LegoBuffer">
+        <Attribute Name="X" AttributeDataType="xs:float" RefAttributeType="AttributeTypeLib/X">
+          <Value>15</Value>
+        </Attribute>
+        <Attribute Name="Z" AttributeDataType="xs:float" RefAttributeType="AttributeTypeLib/Z">
+          <Value>-29</Value>
+        </Attribute>
+      </InternalElement>
+      <InternalElement Name="AssemblyStation" ID="ce53efac-8786-4804-9448-cf54d11be399" RefBaseSystemUnitPath="SystemUnitClassLib/AssemblyStation">
+        <Attribute Name="X" AttributeDataType="xs:float" RefAttributeType="AttributeTypeLib/X">
+          <Value>15</Value>
+        </Attribute>
+        <Attribute Name="Z" AttributeDataType="xs:float" RefAttributeType="AttributeTypeLib/Z">
+          <Value>-11</Value>
+        </Attribute>
+      </InternalElement>
+    </InternalElement>
+  </InstanceHierarchy>
+  <InterfaceClassLib Name="AutomationMLInterfaceClassLib" ChangeMode="state">
+    <Description>Standard Automation Markup Language Interface Class Library - Part 1 Content </Description>
+    <Version>2.10</Version>
+    <Copyright>AutomationML e.V.</Copyright>
+    <InterfaceClass Name="AutomationMLBaseInterface">
+      <InterfaceClass Name="Order" RefBaseClassPath="AutomationMLInterfaceClassLib/AutomationMLBaseInterface">
+        <Attribute Name="Direction" RefAttributeType="AutomationMLBaseAttributeTypeLib/Direction" AttributeDataType="xs:string">
+          <DefaultValue>InOut</DefaultValue>
+          <Constraint Name="AllowedValues">
+            <NominalScaledType>
+              <RequiredValue>In</RequiredValue>
+              <RequiredValue>Out</RequiredValue>
+              <RequiredValue>InOut</RequiredValue>
+            </NominalScaledType>
+          </Constraint>
+        </Attribute>
+      </InterfaceClass>
+      <InterfaceClass Name="Port" RefBaseClassPath="AutomationMLInterfaceClassLib/AutomationMLBaseInterface">
+        <Attribute Name="Direction" AttributeDataType="xs:string" RefAttributeType="AutomationMLBaseAttributeTypeLib/Direction">
+          <Constraint Name="AllowedValues">
+            <NominalScaledType>
+              <RequiredValue>In</RequiredValue>
+              <RequiredValue>Out</RequiredValue>
+              <RequiredValue>InOut</RequiredValue>
+            </NominalScaledType>
+          </Constraint>
+        </Attribute>
+        <Attribute Name="Cardinality" RefAttributeType="AutomationMLBaseAttributeTypeLib/Cardinality">
+          <Attribute Name="MinOccur" AttributeDataType="xs:unsignedInt" />
+          <Attribute Name="MaxOccur" AttributeDataType="xs:unsignedInt" />
+        </Attribute>
+        <Attribute Name="Category" AttributeDataType="xs:string" RefAttributeType="AutomationMLBaseAttributeTypeLib/Category" />
+      </InterfaceClass>
+      <InterfaceClass Name="PPRConnector" RefBaseClassPath="AutomationMLInterfaceClassLib/AutomationMLBaseInterface" />
+      <InterfaceClass Name="ExternalDataConnector" RefBaseClassPath="AutomationMLInterfaceClassLib/AutomationMLBaseInterface">
+        <Attribute Name="refURI" AttributeDataType="xs:anyURI" RefAttributeType="AutomationMLBaseAttributeTypeLib/refURI" />
+        <InterfaceClass Name="COLLADAInterface" RefBaseClassPath="AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector">
+          <Attribute Name="refType" AttributeDataType="xs:string" />
+          <Attribute Name="target" AttributeDataType="xs:token" />
+        </InterfaceClass>
+        <InterfaceClass Name="PLCopenXMLInterface" RefBaseClassPath="AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector" />
+        <InterfaceClass Name="ExternalDataReference" RefBaseClassPath="AutomationMLInterfaceClassLib/AutomationMLBaseInterface/ExternalDataConnector">
+          <Attribute Name="MIMEType" AttributeDataType="xs:string" RefAttributeType="AutomationMLBaseAttributeTypeLib/MIMEType" />
+        </InterfaceClass>
+      </InterfaceClass>
+      <InterfaceClass Name="Communication" RefBaseClassPath="AutomationMLInterfaceClassLib/AutomationMLBaseInterface">
+        <InterfaceClass Name="SignalInterface" RefBaseClassPath="AutomationMLInterfaceClassLib/AutomationMLBaseInterface/Communication" />
+      </InterfaceClass>
+    </InterfaceClass>
+  </InterfaceClassLib>
+  <RoleClassLib Name="AutomationMLBaseRoleClassLib">
+    <Description>Automation Markup Language Base Role Class Library - Part 1</Description>
+    <Version>2.10.0</Version>
+    <RoleClass Name="AutomationMLBaseRole" ChangeMode="state">
+      <RoleClass Name="Group" RefBaseClassPath="AutomationMLBaseRoleClassLib/AutomationMLBaseRole">
+        <Attribute Name="AssociatedFacet" RefAttributeType="AutomationMLBaseAttributeTypeLib/AssociatedFacet" AttributeDataType="xs:string" />
+      </RoleClass>
+      <RoleClass Name="Facet" RefBaseClassPath="AutomationMLBaseRoleClassLib/AutomationMLBaseRole" />
+      <RoleClass Name="Resource" RefBaseClassPath="AutomationMLBaseRoleClassLib/AutomationMLBaseRole" />
+      <RoleClass Name="Product" RefBaseClassPath="AutomationMLBaseRoleClassLib/AutomationMLBaseRole" />
+      <RoleClass Name="Process" RefBaseClassPath="AutomationMLBaseRoleClassLib/AutomationMLBaseRole" />
+      <RoleClass Name="Structure" RefBaseClassPath="AutomationMLBaseRoleClassLib/AutomationMLBaseRole">
+        <RoleClass Name="ProductStructure" RefBaseClassPath="AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Structure" />
+        <RoleClass Name="ProcessStructure" RefBaseClassPath="AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Structure" />
+        <RoleClass Name="ResourceStructure" RefBaseClassPath="AutomationMLBaseRoleClassLib/AutomationMLBaseRole/Structure" />
+      </RoleClass>
+      <RoleClass Name="ExternalData" RefBaseClassPath="AutomationMLBaseRoleClassLib/AutomationMLBaseRole" />
+    </RoleClass>
+  </RoleClassLib>
+  <SystemUnitClassLib Name="SystemUnitClassLib">
+    <Version>0</Version>
+    <SystemUnitClass Name="AssemblyStation" ID="b459d0f4-2cd4-4dc2-8fdb-3e0da204bd7e" />
+    <SystemUnitClass Name="LegoBuffer" ID="e69644b3-a656-49fc-b2a4-941a183ea6a9" />
+    <SystemUnitClass Name="Cell" ID="9a13ab2f-7b10-4d12-9b2c-b5b599e9ff2b">
+      <InternalElement Name="LegoBuffer" ID="04bd219e-5efe-4278-9e9e-85402a087d4b" RefBaseSystemUnitPath="SystemUnitClassLib/LegoBuffer" />
+      <InternalElement Name="AssemblyStation" ID="e97f70cc-5008-400f-b5ef-53309212300e" RefBaseSystemUnitPath="SystemUnitClassLib/AssemblyStation" />
+    </SystemUnitClass>
+  </SystemUnitClassLib>
+  <AttributeTypeLib Name="AutomationMLBaseAttributeTypeLib" ChangeMode="state">
+    <Description>Standard Automation Markup Language Attribute Type Library</Description>
+    <Version>2.10.0</Version>
+    <Copyright>AutomationML e.V.</Copyright>
+    <AttributeType Name="AssociatedExternalValue">
+      <Attribute Name="refCAEXAttribute" AttributeDataType="xs:string" />
+      <Attribute Name="refURI" AttributeDataType="xs:string" />
+      <Attribute Name="Direction" AttributeDataType="xs:string" />
+    </AttributeType>
+    <AttributeType Name="AssociatedFacet" AttributeDataType="xs:string" />
+    <AttributeType Name="Cardinality">
+      <Attribute Name="MinOccur" AttributeDataType="xs:unsignedInt" />
+      <Attribute Name="MaxOccur" AttributeDataType="xs:unsignedInt" />
+    </AttributeType>
+    <AttributeType Name="Category" AttributeDataType="xs:string" />
+    <AttributeType Name="Direction" AttributeDataType="xs:string">
+      <DefaultValue>InOut</DefaultValue>
+      <Constraint Name="AllowedValues">
+        <NominalScaledType>
+          <RequiredValue>In</RequiredValue>
+          <RequiredValue>Out</RequiredValue>
+          <RequiredValue>InOut</RequiredValue>
+        </NominalScaledType>
+      </Constraint>
+    </AttributeType>
+    <AttributeType Name="DocLang" AttributeDataType="xs:string" />
+    <AttributeType Name="Frame" AttributeDataType="">
+      <Attribute Name="x" AttributeDataType="xs:double">
+        <DefaultValue>0</DefaultValue>
+        <Value>0</Value>
+      </Attribute>
+      <Attribute Name="y" AttributeDataType="xs:double">
+        <DefaultValue>0</DefaultValue>
+        <Value>0</Value>
+      </Attribute>
+      <Attribute Name="z" AttributeDataType="xs:double">
+        <DefaultValue>0</DefaultValue>
+        <Value>0</Value>
+      </Attribute>
+      <Attribute Name="rx" AttributeDataType="xs:double">
+        <DefaultValue>0</DefaultValue>
+        <Value>0</Value>
+      </Attribute>
+      <Attribute Name="ry" AttributeDataType="xs:double">
+        <DefaultValue>0</DefaultValue>
+        <Value>0</Value>
+      </Attribute>
+      <Attribute Name="rz" AttributeDataType="xs:double">
+        <DefaultValue>0</DefaultValue>
+        <Value>0</Value>
+      </Attribute>
+    </AttributeType>
+    <AttributeType Name="ListType" AttributeDataType="xs:string" />
+    <AttributeType Name="LocalizedAttribute" AttributeDataType="xs:string" />
+    <AttributeType Name="MIMEType" AttributeDataType="xs:string" />
+    <AttributeType Name="OrderedListType" AttributeDataType="xs:string" />
+    <AttributeType Name="refURI" AttributeDataType="xs:anyURI" />
+  </AttributeTypeLib>
+  <AttributeTypeLib Name="AttributeTypeLib">
+    <Version>0</Version>
+    <AttributeType Name="X" AttributeDataType="xs:float">
+      <Value>15</Value>
+    </AttributeType>
+    <AttributeType Name="Z" AttributeDataType="xs:float">
+      <Value>-11</Value>
+    </AttributeType>
+  </AttributeTypeLib>
+</CAEXFile>
