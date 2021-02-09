@@ -39,10 +39,6 @@ public class Main extends SimpleApplication {
     // listan perusteella tiedetään missä järjestyksessä lajitellaan värin mukaan
     ArrayList<String> colors = new ArrayList(numColors);
     LegoBuffer pufferi;
-    int legoBufferX;
-    int legoBufferZ;
-    int assemblyStationX;
-    int assemblyStationZ;
     
     /////
     /////
@@ -64,10 +60,6 @@ public class Main extends SimpleApplication {
     // listan perusteella tiedetään missä järjestyksessä lajitellaan värin mukaan
     ArrayList<String> colors2 = new ArrayList(numColors2);
     LegoBuffer pufferi2;
-    int legoBuffer2X;
-    int legoBuffer2Z;
-    int assemblyStation2X;
-    int assemblyStation2Z;
     AmlRead AmlRead = new AmlRead();
     int[] coordinateArray;//xzxzxzxz
     
@@ -85,7 +77,7 @@ public class Main extends SimpleApplication {
         coordinateArray= AmlRead.AmlRead();
         //System.out.println(": coordinateArrayyyyyyyyzzzzzz"+ coordinateArray);
         for(int c = 0;c<8;c++){
-            System.out.println("coordinateArray["+c+"] "+ coordinateArray[c]);
+            //System.out.println("coordinateArray["+c+"] "+ coordinateArray[c]);
         }
         
         pufferi = new LegoBuffer(assetManager, rootNode, coordinateArray[0], coordinateArray[1], 10, 6);
